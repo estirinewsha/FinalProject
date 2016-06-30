@@ -15,7 +15,6 @@ HUD::HUD()
     barracksSample->setPosition(sf::Vector2f(10, 20));
     addbuilding=false;
     addcoor=false;
-    buildingnum=0;
 }
 
 void HUD::eventHandler(Event& event)
@@ -52,11 +51,9 @@ void HUD::eventHandler(Event& event)
         }
 
     }
-    //std::cout<<'\n'<<selectedBuilding<<'\n';
+
 }
-void HUD::addBarCoor(int x,int y,int i){
-    bars[i].setPosition(sf::Vector2f(x, y));
-}
+
 void HUD::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();

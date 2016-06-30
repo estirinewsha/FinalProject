@@ -22,11 +22,8 @@ public:
     int selectedBuilding;
     bool addcoor;
     bool addbuilding;
-    int buildingnum;
     int xPose;
     int yPose;
-    std::vector <sf::Clock> clock;
-    std::vector <sf::RectangleShape> bars;
 private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
