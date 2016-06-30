@@ -13,11 +13,11 @@ void Configuration::init()
 
 void Configuration::initialize()
 {
-    textures.load(TexCursor, "img/cursor.png");
-    textures.load(TexGrass, "img/Tiles/Terrain/Grass/grass_05.png");
-    textures.load(TexBarracks, "img/Objects/sheriff.png");
-
-    font.loadFromFile("font/arial.ttf");
+    textures.load(TexCursor, "/Users/zahra/Desktop/FinalProject/runtime/img/cursor.png");
+    textures.load(TexGrass, "/Users/zahra/Desktop/FinalProject/runtime/img/Tiles/Terrain/Grass/grass_05.png");
+    textures.load(TexBarracks, "/Users/zahra/Desktop/FinalProject/runtime/img/Objects/hangar.png");
+    textures.load(TexTreasury, "/Users/zahra/Desktop/FinalProject/runtime/img/Objects/tre.png");
+    font.loadFromFile("/Users/zahra/Desktop/FinalProject/runtime/font/arial.ttf");
 }
 
 

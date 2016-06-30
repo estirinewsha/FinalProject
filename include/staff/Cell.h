@@ -17,6 +17,7 @@ const float PI = 3.14;      //PI Number
 
 class Cell : public sf::Drawable, public sf::Transformable
 {
+public:
     int radious;
     HexPosition pos;
     sf::Sprite *sprite;
@@ -24,8 +25,8 @@ class Cell : public sf::Drawable, public sf::Transformable
     sf::VertexArray vertex;
     sf::Text text;
     #endif // DEBUG
-public:
-    enum type {Water, Dirt, Grass};
+
+    enum type : int {Water, Dirt, Grass, Barracks};
     Cell(HexPosition pos, type t, int radious);
 
 private:

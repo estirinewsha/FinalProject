@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     netWars::Configuration::init();
-    Client *client = new Client();
+    netWars::Client *client = new netWars::Client();
     client->start();
     return 0;
 }

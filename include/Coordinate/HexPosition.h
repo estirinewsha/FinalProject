@@ -1,6 +1,9 @@
 #ifndef HEXPOSITION_H_INCLUDED
 #define HEXPOSITION_H_INCLUDED
 
+#include <SFML/System/Vector2.hpp>
+#include <cmath>
+
 namespace netWars
 {
 

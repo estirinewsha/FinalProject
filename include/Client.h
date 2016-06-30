@@ -6,6 +6,10 @@
 #include "Graphic.h"
 #include "HUD.h"
 #include "staff/TileMap.h"
+
+namespace netWars
+{
+
 class Client
 {
     Graphic *graphic;
@@ -22,5 +26,7 @@ public:
     void start();
 
 };
+
+}
 
 #endif // CLIENT_H_INCLUDED

@@ -14,7 +14,9 @@ public:
     enum Textures : int {
     TexCursor,
     TexGrass,
-    TexBarracks
+    TexBarracks,
+    TexTreasury,
+    TexSoldier
     };
 
     static sf::Font font;

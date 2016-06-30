@@ -6,13 +6,14 @@
 struct Event
 {
     bool clicked = false;
-    sf::Vector2f mousePos;
-
+    sf::Vector2f defaultPos;
+    int isOnMap = false;
+    sf::Vector2f mapPos;
     bool operator!=(Event e)
     {
         if(clicked != e.clicked)
             return true;
-        if(mousePos != e.mousePos)
+        if(defaultPos != e.defaultPos)
             return true;
         return false;
     }

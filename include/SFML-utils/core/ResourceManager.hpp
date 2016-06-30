@@ -33,7 +33,7 @@ namespace sfutils
 
 
         private:
-            std::unordered_map<IDENTIFIER,std::unique_ptr<RESOURCE>> _map;
+            std::unordered_map<IDENTIFIER,std::unique_ptr<RESOURCE> > _map;
     };
 
     template<typename IDENTIFIER>
@@ -58,7 +58,7 @@ namespace sfutils
             void clear();
 
         private:
-            std::unordered_map<IDENTIFIER,std::unique_ptr<sf::Music>> _map;
+            std::unordered_map<IDENTIFIER,std::unique_ptr<sf::Music> > _map;
     };
     template<typename IDENTIFIER>
     class ResourceManager<Animation,IDENTIFIER>
@@ -82,7 +82,7 @@ namespace sfutils
             void clear();
 
         private:
-            std::unordered_map<IDENTIFIER,std::unique_ptr<Animation>> _map;
+            std::unordered_map<IDENTIFIER,std::unique_ptr<Animation> > _map;
     };
 
 }

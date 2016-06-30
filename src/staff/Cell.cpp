@@ -13,7 +13,6 @@ Cell::Cell(HexPosition pos, type t, int radious) : pos(pos)
 {
     sprite = new sf::Sprite(Configuration::textures.get(Configuration::TexGrass));
     sprite->setOrigin(sprite->getGlobalBounds().width/2, sprite->getGlobalBounds().height/2);
-
     this->radious = radious;
     #ifdef DEBUG
     text.setString(std::to_string(pos.q)+","+std::to_string(pos.r));

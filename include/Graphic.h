@@ -5,16 +5,26 @@
 #include <queue>
 
 #include "staff/Event.h"
+#include "staff/TileMap.h"
+#include "Soldier.h"
+
+
+namespace netWars
+{
 
 class Graphic
 {
-    sf::RenderWindow *window;
     sf::View view;
+    sf::View defaultView;
     std::queue<Event> eventQ;
     Event lastEvent;
     sf::Mutex eventQmutex;
-    std::vector<sf::Drawable*> objects;
+    sf::Sprite *_cursor;
+    TileMap* tileMap;
+    Soldier* soldier;
+  //  HUD* hud;
 public:
+    sf::RenderWindow *window;
     bool isOpen;
 private:
     void eventHandler();
@@ -24,7 +34,9 @@ public:
     void start();
     void main();
     Event getEvent();
-    void draw(sf::Drawable* object);
+    void setTM(TileMap*);
+    void setHUD(HUD*);
 };
 
+}
 #endif // GRAPHIC_H_INCLUDED
