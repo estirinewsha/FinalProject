@@ -1,5 +1,6 @@
 #include "Configuration.h"
 
+#include <iostream>
 namespace netWars
 {
 
@@ -13,11 +14,12 @@ void Configuration::init()
 
 void Configuration::initialize()
 {
-    textures.load(TexCursor, "/Users/zahra/Desktop/FinalProject/runtime/img/cursor.png");
-    textures.load(TexGrass, "/Users/zahra/Desktop/FinalProject/runtime/img/Tiles/Terrain/Grass/grass_05.png");
-    textures.load(TexBarracks, "/Users/zahra/Desktop/FinalProject/runtime/img/Objects/hangar.png");
-    textures.load(TexTreasury, "/Users/zahra/Desktop/FinalProject/runtime/img/Objects/tre.png");
-    font.loadFromFile("/Users/zahra/Desktop/FinalProject/runtime/font/arial.ttf");
+    textures.load(TexCursor, "./img/cursor.png");
+    textures.load(TexGrass, "./img/Tiles/Terrain/Grass/grass_05.png");
+    textures.load(TexBarracks, "./img/Objects/hangar.png");
+    textures.load(TexTreasury, "./img/Objects/tre.png");
+    textures.load(TexSoldier, "./img/Soldiers/alienYellow.png");
+    font.loadFromFile("./font/arial.ttf");
 }
 
 

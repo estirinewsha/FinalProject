@@ -35,7 +35,7 @@ void TileMap::eventHandler(Event& event)
 {
     if(event.clicked)
     {
-        sf::Vector2f mousePos =this->getInverseTransform().transformPoint(event.mousePos);
+        sf::Vector2f mousePos =this->getInverseTransform().transformPoint(event.mapPos);
         if(hud->addcoor){
            // hud->xPose=mousePos.x;
             //hud->yPose=mousePos.x;
