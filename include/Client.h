@@ -15,7 +15,7 @@ class Client
     Graphic *graphic;
     netWars::TileMap *tileMap;
     int PlayerID;
-    //std::vector<Player*> player;
+    Player* player;
     HUD *hud;
 
 private:

@@ -15,7 +15,6 @@ HUD::HUD()
     barracksSample->setPosition(sf::Vector2f(10, 20));
     addbuilding=false;
     addcoor=false;
-    buildingnum=0;
 }
 
 void HUD::eventHandler(Event& event)
@@ -24,40 +23,60 @@ void HUD::eventHandler(Event& event)
     {
         sf::Vector2f mousePos = this->getInverseTransform().transformPoint(event.defaultPos);
 
-        if(background->getGlobalBounds().contains(mousePos))
+        if(selectedBuilding == Buildings::None)
         {
-            if(barracksSample->getGlobalBounds().contains(mousePos))
-            {
-                std::cout <<mousePos.x <<"\t" <<mousePos.y <<"\n";
-                std::cout <<"Clicked On Barracks\n";
 
-                selectedBuilding = Buildings::Barracks;
-                addbuilding=true;
+            std::cout <<".";
+            if(background->getGlobalBounds().contains(mousePos))
+            {
+                if(barracksSample->getGlobalBounds().contains(mousePos))
+                {
+                    std::cout <<mousePos.x <<"\t" <<mousePos.y <<"\n";
+                    std::cout <<"Clicked On Barracks\n";
+
+                    selectedBuilding = Buildings::Barracks;
+                    addbuilding=true;
+                }
+                else if(treasurySample->getGlobalBounds().contains(mousePos))
+                {
+                    std::cout <<mousePos.x <<"\t" <<mousePos.y <<"\n";
+                    std::cout <<"Clicked On treasury\n";
+
+                    selectedBuilding = Buildings::Treasury;
+                    addbuilding=true;
+                }
             }
-            else if(treasurySample->getGlobalBounds().contains(mousePos))
+            else
             {
-                std::cout <<mousePos.x <<"\t" <<mousePos.y <<"\n";
-                std::cout <<"Clicked On treasury\n";
-
-                selectedBuilding = Buildings::Treasury;
-                addbuilding=true;
+                std::cout <<event.defaultPos.x <<"\t" <<event.defaultPos.y <<"\n";
+                event.isOnMap = true;
+                event.hexPos = new HexPosition(TileMap::convertToHexPos(event.mapPos));
             }
         }
         else
         {
-
-            std::cout <<event.defaultPos.x <<"\t" <<event.defaultPos.y <<"\n";
-            event.isOnMap = true;
+            HexPosition pos = TileMap::convertToHexPos(event.mapPos);
+            buildingQmutex.lock();
+            buildingQ.push(new Building(selectedBuilding, pos));
+            buildingQmutex.unlock();
             selectedBuilding = Buildings::None;
         }
-
     }
-    //std::cout<<'\n'<<selectedBuilding<<'\n';
 }
-void HUD::addBarCoor(int x,int y,int i){
-    bars[i].setPosition(sf::Vector2f(x, y));
-    bars[i].setOrigin(bars[i].getGlobalBounds().width/2, bars[i].getGlobalBounds().height/2);
+
+Building* HUD::getBuilding()
+{
+    Building* building = nullptr;
+    buildingQmutex.lock();
+    if(!buildingQ.empty())
+    {
+        building = buildingQ.front();
+        buildingQ.pop();
+    }
+    buildingQmutex.unlock();
+    return building;
 }
+
 void HUD::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();

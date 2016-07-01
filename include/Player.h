@@ -2,22 +2,27 @@
 #define PLAYER_H
 #include"vector"
 #include"Building.h"
-//using namespace std;
-class Player
+#include<iostream>
+#include "Soldier.h"
+#include "staff/Event.h"
+using namespace netWars;
+class Player: public sf::Drawable
 {
     public:
         int soldiernum;
         int coinnum;
-        std::vector <Building> bld;
-        //std::vector <Soldier> sld;
+        std::vector <Building*> bld;
+        std::vector <Soldier*> sld;
         Player();
-        virtual ~Player();
+         ~Player();
         void getType(int i);
-        bool addnew(int x,int y,int type);
-        //void addnewsoldier(int x,int y);
-	void addCoor(int x,int y,int i);
+        bool addBuilding(Building*);
+        bool eventHandler(Event&);
+        bool isCellEmpty(netWars::HexPosition pos);
+        void timing(int i);
     protected:
     private:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif // PLAYER_H

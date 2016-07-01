@@ -15,7 +15,6 @@ Graphic::Graphic()
     window->setView(view);
     _cursor = new sf::Sprite(Configuration::textures.get(Configuration::TexCursor));
 
-    soldier = new Soldier(HexPosition(0,0));
 }
 
 void Graphic::start()
@@ -90,14 +89,6 @@ void Graphic::eventHandler()
 
             worldPos = window->mapPixelToCoords(pixelPos,defaultView);
             output.defaultPos = worldPos;
-            ///
-            if(tileMap->hud->addcoor)
-            {
-                tileMap->player->addCoor(output.mapPos.x, output.mapPos.y,tileMap->hud->buildingnum);
-                tileMap->hud->addBarCoor(output.mapPos.x, output.mapPos.y,tileMap->hud->buildingnum-1);
-                std::cout<<"clicked"<<sf::Mouse::getPosition(*window).x<<'\n'<<sf::Mouse::getPosition(*window).y<<'\n';
-                tileMap->hud->addcoor=false;
-            }
         }
     }
 
@@ -110,14 +101,14 @@ void Graphic::eventHandler()
     }
 }
 
-void Graphic::setTM(TileMap* tm)
+void Graphic::newOnMap(sf::Drawable* object)
 {
-    this->tileMap = tm;
+    onMaps.push_back(object);
 }
 
-void Graphic::setHUD(HUD* hud)
+void Graphic::newOnHUD(sf::Drawable* object)
 {
-    this->tileMap->hud = hud;
+    onHUDs.push_back(object);
 }
 
 void Graphic::drawObjects()
@@ -125,13 +116,23 @@ void Graphic::drawObjects()
     window->clear();
 
     window->setView(view);
-    window->draw(*tileMap);
-    window->draw(*soldier);
+
+    for(auto obj : onMaps)
+    {
+        window->draw(*obj);
+    }
 
     window->setView(defaultView);
-    window->draw(*(tileMap->hud));
+
+    for(auto obj : onHUDs)
+    {
+        window->draw(*obj);
+    }
+
     _cursor->setPosition(window->mapPixelToCoords(sf::Mouse::getPosition(*window)));
     window->draw(*_cursor);
+
     window->display();
 }
+
 }

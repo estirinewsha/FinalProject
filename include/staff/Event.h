@@ -2,6 +2,7 @@
 #define EVENT_H_INCLUDED
 
 #include <SFML/System/Vector2.hpp>
+#include "Coordinate/HexPosition.h"
 
 struct Event
 {
@@ -9,6 +10,7 @@ struct Event
     sf::Vector2f defaultPos;
     int isOnMap = false;
     sf::Vector2f mapPos;
+    netWars::HexPosition* hexPos;
     bool operator!=(Event e)
     {
         if(clicked != e.clicked)

@@ -6,14 +6,17 @@ namespace netWars
 Client::Client()
 {
     graphic = new Graphic();
-    PlayerID = 0;
 
     tileMap = new netWars::TileMap(netWars::TileMap::SAMPLE);
-    graphic->setTM(tileMap);
+    graphic->newOnMap(tileMap);
+
+    PlayerID = 0;
+    player = new Player();
+    graphic->newOnMap(player);
 
     hud = new HUD;
     hud->setPosition(0, 600-92);
-    graphic->setHUD(hud);
+    graphic->newOnHUD(hud);
 }
 
 void Client::start()
@@ -42,12 +45,18 @@ void Client::eventHander()
         Event event = graphic->getEvent();
 
         hud->eventHandler(event);
-        //tileMap->eventHandler(event);
-        if(event.isOnMap)
-        {
-            //event.mousePos =
-            ///update->addNewBuilding(event, hud->getStage());
+
+        {///adding new Buildings
+            Building* building = hud->getBuilding();
+            if(building!= nullptr)
+            {
+                if(!player->addBuilding(building))
+                    std::cout <<"No Money!";
+            }
         }
+
+        player->eventHandler(event);
+
     }
 }
 

@@ -12,7 +12,6 @@ class TileMap : public sf::Drawable, public sf::Transformable
 {
     std::vector<Cell*> hexs;
 public:
-    HUD* hud;
     Player *player;
 
     sf::Sprite *barracksSample;

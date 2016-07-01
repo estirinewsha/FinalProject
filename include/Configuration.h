@@ -16,6 +16,7 @@ public:
     TexGrass,
     TexBarracks,
     TexTreasury,
+    TexCastle,
     TexSoldier
     };
 

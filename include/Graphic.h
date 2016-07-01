@@ -20,9 +20,9 @@ class Graphic
     Event lastEvent;
     sf::Mutex eventQmutex;
     sf::Sprite *_cursor;
-    TileMap* tileMap;
-    Soldier* soldier;
-  //  HUD* hud;
+
+    std::vector<sf::Drawable*> onMaps;
+    std::vector<sf::Drawable*> onHUDs;
 public:
     sf::RenderWindow *window;
     bool isOpen;
@@ -34,8 +34,8 @@ public:
     void start();
     void main();
     Event getEvent();
-    void setTM(TileMap*);
-    void setHUD(HUD*);
+    void newOnMap(sf::Drawable*);
+    void newOnHUD(sf::Drawable*);
 };
 
 }
