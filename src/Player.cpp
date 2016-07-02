@@ -1,19 +1,23 @@
 #include "Player.h"
 #include "Coordinate/HexPosition.h"
 
-bool Player::addBuilding(Building* building)
+int Player::addBuilding(Building* building)
 {
     if(coinnum>100)
     {
-        bld.push_back(building);
-        std::cout <<",,,,,,,,\n";
-        coinnum-=100;
-        return true;
+        if(this->isCellEmpty(building->getPos()))
+        {
+            bld.push_back(building);
+            std::cout <<",,,,,,,,\n";
+            coinnum-=100;
+            return 1;
+        }
+        else
+            return -1;
+
     }
     else
-    {
-        return false;
-    }
+        return 0;
 }
 
 Player::Player()

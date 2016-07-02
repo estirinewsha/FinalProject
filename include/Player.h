@@ -16,7 +16,7 @@ class Player: public sf::Drawable
         Player();
          ~Player();
         void getType(int i);
-        bool addBuilding(Building*);
+        int addBuilding(Building*);
         bool eventHandler(Event&);
         bool isCellEmpty(netWars::HexPosition pos);
         void timing(int i);
